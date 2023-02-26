@@ -1,0 +1,22 @@
+.profile__edit-button {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    transform: translateX(42px);
+    padding: 0;
+    border: none;
+    background-color: transparent;
+}
+
+@media screen and (max-width: 979px) {
+    .profile__edit-button {
+        transform: translateX(32px);
+    }
+}
+
+@media screen and (max-width: 525px) {
+    .profile__edit-button {
+        transform: translateX(28px);
+    }
+}
