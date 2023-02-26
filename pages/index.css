@@ -1,6 +1,7 @@
 @import url(../vendor/normalize.css);
 @import url(../vendor/fonts.css);
 @import url(../blocks/list/list.css);
+@import url(../blocks/hidden-text/hidden-text.css);
 @import url(../blocks/root/root.css);
 
 
@@ -24,3 +25,14 @@
 @import url(../blocks/profile/__info-main/profile__info-main.css);
 @import url(../blocks/profile/__nike-name/profile__nike-name.css);
 
+@import url(../blocks/elements/elements.css);
+
+
+@import url(../blocks/element/__img/element__img.css);
+@import url(../blocks/element/__info/element__info.css);
+@import url(../blocks/element/__name-picture/element__name-picture.css);
+@import url(../blocks/element/__like/element__like.css);
+
+
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__copyright/footer__copyright.css);
