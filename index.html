@@ -16,62 +16,69 @@
         <div class="profile__info">
             <div class="profile__info-main">
                 <h1 class="profile__nike-name hidden-text">Жак-Ив Кусто</h1>
-                <button class="profile__edit-button">
-                    <img class="profile__icon-edit-button" src="./images/logo/edit.svg" alt="Иконка 'Редактировать'">
-                </button>
+                <button class="profile__edit-button"></button>
             </div>
             <p class="profile__discription hidden-text">Исследователь океана</p>
         </div>
-        <button class="profile__add-button">
-            <img class="profile__icon-add-button" src="./images/logo/add.svg" alt="Иконка 'Длбавить картинку'">
-        </button>
+        <button class="profile__add-button"></button>
     </div>
     <ul class="elements list">
         <li class="element">
             <img class="element__img" src="./images/krachevsk.png" alt="Картинка Крачевска">
             <div class="element__info">
                 <h2 class="element__name-picture hidden-text">Карачаевск</h2>
-                <img class="element__like" src="./images/logo/uset-like.svg" alt="Иконка лайка">
+                <img class="element__like" src="./images/icons/uset-like.svg" alt="Иконка лайка">
             </div>
         </li>
         <li class="element">
             <img class="element__img" src="./images/elbrus.png" alt="Картинка горы Эльбрус">
             <div class="element__info">
                 <h2 class="element__name-picture hidden-text">Гора Эльбрус</h2>
-                <img class="element__like" src="./images/logo/uset-like.svg" alt="Иконка лайка">
+                <img class="element__like" src="./images/icons/uset-like.svg" alt="Иконка лайка">
             </div>
         </li>
         <li class="element">
             <img class="element__img" src="./images/dombay.png" alt="Картинка Домбая">
             <div class="element__info">
                 <h2 class="element__name-picture hidden-text">Домбай</h2>
-                <img class="element__like" src="./images/logo/uset-like.svg" alt="Иконка лайка">
+                <img class="element__like" src="./images/icons/uset-like.svg" alt="Иконка лайка">
             </div>
         </li>
         <li class="element">
             <img class="element__img" src="./images/elbrus.png" alt="Картинка горы Эльбрус">
             <div class="element__info">
                 <h2 class="element__name-picture hidden-text">Гора Эльбрус</h2>
-                <img class="element__like" src="./images/logo/uset-like.svg" alt="Иконка лайка">
+                <img class="element__like" src="./images/icons/uset-like.svg" alt="Иконка лайка">
             </div>
         </li>
         <li class="element">
             <img class="element__img" src="./images/dombay.png" alt="Картинка Домбая">
             <div class="element__info">
                 <h2 class="element__name-picture hidden-text">Домбай</h2>
-                <img class="element__like" src="./images/logo/uset-like.svg" alt="Иконка лайка">
+                <img class="element__like" src="./images/icons/uset-like.svg" alt="Иконка лайка">
             </div>
         </li>
         <li class="element">
             <img class="element__img" src="./images/krachevsk.png" alt="Картинка Крачевска">
             <div class="element__info">
                 <h2 class="element__name-picture hidden-text">Карачаево-Черкевск</h2>
-                <img class="element__like" src="./images/logo/uset-like.svg" alt="Иконка лайка">
+                <img class="element__like" src="./images/icons/uset-like.svg" alt="Иконка лайка">
             </div>
         </li>
     </ul>
     <div class="footer">
         <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
+    </div>
+    <div class="popup popup_opened">
+        <div class="popup__container">
+            <div class="popup__close"></div>
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <form class="popup__form">
+                <input class="popup__input-name" value="Жак-Ив Кусто"/>
+                <input class="popup__input-discription"  value="Исследователь океана"/>
+                <button class="popup__btn-save" type="submit">Cохранить</button>
+            </form>
+        </div>
     </div>
 </body>
 
