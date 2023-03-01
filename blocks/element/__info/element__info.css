@@ -1,8 +1,8 @@
 .element__info {
     display: flex;
     justify-content: space-between;
-    padding: 25px 20px 31px;
-    width: calc(100%-20px);
+    align-items: center;
+    padding: 25px 20px 26px;
     background-color: #fff;
     border-radius: 0 0 10px 10px;
 }

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="ru">
-<header>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./pages/index.css">
-    <title></title>
-</header>
+    <title>Mesto</title>
+</head>
 
 <body class="root">
     <div class="header">
@@ -16,70 +16,72 @@
         <div class="profile__info">
             <div class="profile__info-main">
                 <h1 class="profile__nike-name hidden-text">Жак-Ив Кусто</h1>
-                <button class="profile__edit-button"></button>
+                <button class="profile__edit-btn" aria-label="Редактировать профиль"></button>
             </div>
             <p class="profile__discription hidden-text">Исследователь океана</p>
         </div>
-        <button class="profile__add-button"></button>
+        <button class="profile__add-btn" aria-label="Добавить картинку"></button>
     </div>
     <ul class="elements list">
         <li class="element">
             <img class="element__img" src="./images/krachevsk.png" alt="Картинка Крачевска">
             <div class="element__info">
                 <h2 class="element__name-picture hidden-text">Карачаевск</h2>
-                <img class="element__like" src="./images/icons/uset-like.svg" alt="Иконка лайка">
+                <button class="element__like" aria-label="Поставить лайк"></button>
             </div>
         </li>
         <li class="element">
             <img class="element__img" src="./images/elbrus.png" alt="Картинка горы Эльбрус">
             <div class="element__info">
                 <h2 class="element__name-picture hidden-text">Гора Эльбрус</h2>
-                <img class="element__like" src="./images/icons/uset-like.svg" alt="Иконка лайка">
+                <button class="element__like" aria-label="Поставить лайк"></button>
             </div>
         </li>
         <li class="element">
             <img class="element__img" src="./images/dombay.png" alt="Картинка Домбая">
             <div class="element__info">
                 <h2 class="element__name-picture hidden-text">Домбай</h2>
-                <img class="element__like" src="./images/icons/uset-like.svg" alt="Иконка лайка">
+                <button class="element__like" aria-label="Поставить лайк"></button>
             </div>
         </li>
         <li class="element">
             <img class="element__img" src="./images/elbrus.png" alt="Картинка горы Эльбрус">
             <div class="element__info">
                 <h2 class="element__name-picture hidden-text">Гора Эльбрус</h2>
-                <img class="element__like" src="./images/icons/uset-like.svg" alt="Иконка лайка">
+                <button class="element__like" aria-label="Поставить лайк"></button>
             </div>
         </li>
         <li class="element">
             <img class="element__img" src="./images/dombay.png" alt="Картинка Домбая">
             <div class="element__info">
                 <h2 class="element__name-picture hidden-text">Домбай</h2>
-                <img class="element__like" src="./images/icons/uset-like.svg" alt="Иконка лайка">
+                <button class="element__like" aria-label="Поставить лайк"></button>
             </div>
         </li>
         <li class="element">
             <img class="element__img" src="./images/krachevsk.png" alt="Картинка Крачевска">
             <div class="element__info">
                 <h2 class="element__name-picture hidden-text">Карачаево-Черкевск</h2>
-                <img class="element__like" src="./images/icons/uset-like.svg" alt="Иконка лайка">
+                <button class="element__like" aria-label="Поставить лайк"></button>
             </div>
         </li>
     </ul>
     <div class="footer">
         <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
     </div>
-    <div class="popup popup_opened">
+    <div class="popup">
         <div class="popup__container">
+            <button class="popup__btn-close" aria-label="Закрыть модальное окно"></button>
             <div class="popup__close"></div>
-            <h2 class="popup__title">Редактировать профиль</h2>
             <form class="popup__form">
-                <input class="popup__input-name" value="Жак-Ив Кусто"/>
-                <input class="popup__input-discription"  value="Исследователь океана"/>
-                <button class="popup__btn-save" type="submit">Cохранить</button>
+                <h2 class="popup__title">Редактировать профиль</h2>
+                <input class="popup__input-name" value="Жак-Ив Кусто" required>
+                <input class="popup__input-discription"  value="Исследователь океана">
+                <button class="popup__btn-save" type="submit"  aria-label="Сохранить изменения">Cохранить</button>
             </form>
         </div>
     </div>
+    <script src="./index.js"></script>
 </body>
 
 </html>

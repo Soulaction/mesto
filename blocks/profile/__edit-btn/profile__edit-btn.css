@@ -1,8 +1,8 @@
-.profile__edit-button {
+.profile__edit-btn {
     display: inline-block;
     position: absolute;
     right: 0;
-    bottom: 0;
+    bottom: 9px;
     transform: translateX(42px);
     padding: 0;
     border: 1px solid #fff;
@@ -13,17 +13,26 @@
     max-width: 24px;
     min-height: 24px;
     width: 100%;
+    opacity: 1;
+    transition: opacity .3s linear;
+}
+
+.profile__edit-btn:hover {
+    cursor: pointer;
+    opacity: .6;
 }
 
 @media screen and (max-width: 979px) {
-    .profile__edit-button {
+    .profile__edit-btn {
         transform: translateX(32px);
     }
 }
 
 @media screen and (max-width: 525px) {
-    .profile__edit-button {
+    .profile__edit-btn {
         max-width: 18px;
+        min-height: 18px;
+        bottom: 7px;
         transform: translateX(28px);
     }
 }
