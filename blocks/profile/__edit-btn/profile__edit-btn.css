@@ -1,9 +1,5 @@
 .profile__edit-btn {
     display: inline-block;
-    position: absolute;
-    right: 0;
-    bottom: 9px;
-    transform: translateX(42px);
     padding: 0;
     border: 1px solid #fff;
     background-color: transparent;
