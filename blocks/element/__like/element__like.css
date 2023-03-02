@@ -6,6 +6,7 @@
     background-size: cover;
     min-width: 22px;
     min-height: 19px;
+    transition: opacity .3s linear;
 }
 
 .element__like:hover {
