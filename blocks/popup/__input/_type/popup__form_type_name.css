@@ -3,7 +3,7 @@
 }
 
 @media screen and (max-width: 525px) {
-    .popup__input-name {
+    .popup__form_type_name {
         margin-top: 75px;
     }
 }
