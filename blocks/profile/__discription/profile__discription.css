@@ -1,6 +1,7 @@
 .profile__discription {
+    grid-area: discr;
     margin: 0;
-    padding: 16px 0 0;
+    padding: 0;
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
@@ -15,14 +16,12 @@
 
 @media screen and (max-width: 767px) {
     .profile__discription {
-        padding: 14px 0 36px 0;
         text-align: center;
     }
 }
 
 @media screen and (max-width: 525px) {
     .profile__discription {
-        padding-top: 7px;
         font-size: 14px;
         line-height: 17px;
     }

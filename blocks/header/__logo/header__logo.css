@@ -1,4 +1,5 @@
 .header__logo {
+    display: block;
     max-width: 142px;
     max-height: 33px;
     padding-bottom: 41px;
@@ -14,6 +15,6 @@
     .header__logo {
         max-width: 103.74px;
         max-height: 24.4px;
-        padding-bottom: 28px;
+        padding-bottom: 31.6px;
     }
 }

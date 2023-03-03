@@ -1,9 +1,9 @@
-let namePerson = document.querySelector('.profile__nike-name');
-let discriptionPerson = document.querySelector('.profile__discription');
+let nameUser = document.querySelector('.profile__nike-name');
+let discriptionUser = document.querySelector('.profile__discription');
 let editButton = document.querySelector('.profile__edit-btn');
 let form = document.querySelector('.popup__form');
-let nameInput = form.querySelector('.popup__input-name');
-let discriptionInput = form.querySelector('.popup__input-discription');
+let nameInput = form.querySelector('.popup__form_type_name');
+let discriptionInput = form.querySelector('.popup__form_type_discription');
 let closeButton = document.querySelector('.popup__btn-close');
 let popup = document.querySelector('.popup');
 
@@ -14,8 +14,8 @@ closeButton.addEventListener('click', closeEditProfile);
 function openEditProfile() {
     popup.classList.toggle('popup_opened');
 
-    nameInput.value = namePerson.textContent;
-    discriptionInput.value = discriptionPerson.textContent;
+    nameInput.value = nameUser.textContent;
+    discriptionInput.value = discriptionUser.textContent;
 }
 
 function closeEditProfile() {
@@ -25,7 +25,7 @@ function closeEditProfile() {
 function formSubmitHandler (evt) {
 	evt.preventDefault();
 
-    namePerson.textContent = nameInput.value;
-    discriptionPerson.textContent = discriptionInput.value;
+    nameUser.textContent = nameInput.value;
+    discriptionUser.textContent = discriptionInput.value;
     closeEditProfile();
 }

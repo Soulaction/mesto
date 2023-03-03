@@ -16,59 +16,57 @@
         <section class="profile">
             <img class="profile__avatar" src="./images/avatar.png" alt="Аватарка пользователя">
             <div class="profile__info">
-                <div class="profile__info-main">
-                    <h1 class="profile__nike-name hidden-text">Жак-Ив Кусто</h1>
-                    <button class="profile__edit-btn" type="button" aria-label="Редактировать профиль"></button>
-                </div>
+                <h1 class="profile__nike-name hidden-text">Жак-Ив Кусто</h1>
+                <button class="profile__edit-btn" type="button" aria-label="Редактировать профиль"></button>
                 <p class="profile__discription hidden-text">Исследователь океана</p>
             </div>
             <button class="profile__add-btn" type="button" aria-label="Добавить картинку"></button>
         </section>
         <section class="elements">
-        <ul class="elements-list list">
-            <li class="element">
-                <img class="element__img" src="./images/krachevsk.png" alt="Картинка Крачевска">
-                <div class="element__info">
-                    <h2 class="element__name-picture hidden-text">Карачаевск</h2>
-                    <button class="element__like" type="button" aria-label="Поставить лайк"></button>
-                </div>
-            </li>
-            <li class="element">
-                <img class="element__img" src="./images/elbrus.png" alt="Картинка горы Эльбрус">
-                <div class="element__info">
-                    <h2 class="element__name-picture hidden-text">Гора Эльбрус</h2>
-                    <button class="element__like" type="button" aria-label="Поставить лайк"></button>
-                </div>
-            </li>
-            <li class="element">
-                <img class="element__img" src="./images/dombay.png" alt="Картинка Домбая">
-                <div class="element__info">
-                    <h2 class="element__name-picture hidden-text">Домбай</h2>
-                    <button class="element__like" type="button" aria-label="Поставить лайк"></button>
-                </div>
-            </li>
-            <li class="element">
-                <img class="element__img" src="./images/elbrus.png" alt="Картинка горы Эльбрус">
-                <div class="element__info">
-                    <h2 class="element__name-picture hidden-text">Гора Эльбрус</h2>
-                    <button class="element__like" type="button" aria-label="Поставить лайк"></button>
-                </div>
-            </li>
-            <li class="element">
-                <img class="element__img" src="./images/dombay.png" alt="Картинка Домбая">
-                <div class="element__info">
-                    <h2 class="element__name-picture hidden-text">Домбай</h2>
-                    <button class="element__like" type="button" aria-label="Поставить лайк"></button>
-                </div>
-            </li>
-            <li class="element">
-                <img class="element__img" src="./images/krachevsk.png" alt="Картинка Крачевска">
-                <div class="element__info">
-                    <h2 class="element__name-picture hidden-text">Карачаево-Черкевск</h2>
-                    <button class="element__like" type="button" aria-label="Поставить лайк"></button>
-                </div>
-            </li>
-        </ul>
+            <ul class="elements-list list">
+                <li class="element">
+                    <img class="element__img" src="./images/krachevsk.png" alt="Картинка Крачевска">
+                    <div class="element__info">
+                        <h2 class="element__name-picture hidden-text">Карачаевск</h2>
+                        <button class="element__like" type="button" aria-label="Поставить лайк"></button>
+                    </div>
+                </li>
+                <li class="element">
+                    <img class="element__img" src="./images/elbrus.png" alt="Картинка горы Эльбрус">
+                    <div class="element__info">
+                        <h2 class="element__name-picture hidden-text">Гора Эльбрус</h2>
+                        <button class="element__like" type="button" aria-label="Поставить лайк"></button>
+                    </div>
+                </li>
+                <li class="element">
+                    <img class="element__img" src="./images/dombay.png" alt="Картинка Домбая">
+                    <div class="element__info">
+                        <h2 class="element__name-picture hidden-text">Домбай</h2>
+                        <button class="element__like" type="button" aria-label="Поставить лайк"></button>
+                    </div>
+                </li>
+                <li class="element">
+                    <img class="element__img" src="./images/elbrus.png" alt="Картинка горы Эльбрус">
+                    <div class="element__info">
+                        <h2 class="element__name-picture hidden-text">Гора Эльбрус</h2>
+                        <button class="element__like" type="button" aria-label="Поставить лайк"></button>
+                    </div>
+                </li>
+                <li class="element">
+                    <img class="element__img" src="./images/dombay.png" alt="Картинка Домбая">
+                    <div class="element__info">
+                        <h2 class="element__name-picture hidden-text">Домбай</h2>
+                        <button class="element__like" type="button" aria-label="Поставить лайк"></button>
+                    </div>
+                </li>
+                <li class="element">
+                    <img class="element__img" src="./images/krachevsk.png" alt="Картинка Крачевска">
+                    <div class="element__info">
+                        <h2 class="element__name-picture hidden-text">Карачаево-Черкевск</h2>
+                        <button class="element__like" type="button" aria-label="Поставить лайк"></button>
+                    </div>
+                </li>
+            </ul>
         </section>
     </main>
     <footer class="footer">
@@ -79,8 +77,10 @@
             <button class="popup__btn-close" type="button" aria-label="Закрыть модальное окно"></button>
             <form class="popup__form" name="user-edit-form">
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <input class="popup__input-name popup__form_type_name" name="name" value="Жак-Ив Кусто" placeholder="Введите имя" required>
-                <input class="popup__input-discription popup__form_type_discription" name="discription" placeholder="Расскажите о себе" value="Исследователь океана">
+                <input class="popup__input popup__form_type_name" name="name" value="Жак-Ив Кусто"
+                    placeholder="Введите имя" required>
+                <input class="popup__input popup__form_type_discription" name="discription"
+                    placeholder="Расскажите о себе" value="Исследователь океана">
                 <button class="popup__btn-save" type="submit" aria-label="Сохранить изменения">Cохранить</button>
             </form>
         </div>
