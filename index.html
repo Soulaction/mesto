@@ -13,7 +13,7 @@
         <img class="header__logo" src="./images/logo/logo.svg" alt="Логотип">
     </header>
     <main class="main">
-        <section class="profile">
+        <section class="profile" aria-label="Информация о профиле пользователя">
             <img class="profile__avatar" src="./images/avatar.png" alt="Аватарка пользователя">
             <div class="profile__info">
                 <h1 class="profile__nike-name hidden-text">Жак-Ив Кусто</h1>
@@ -22,67 +22,55 @@
             </div>
             <button class="profile__add-btn" type="button" aria-label="Добавить картинку"></button>
         </section>
-        <section class="elements">
+        <section class="elements" aria-label="Карточки пользователя">
             <ul class="elements-list list">
-                <li class="element">
-                    <img class="element__img" src="./images/krachevsk.png" alt="Картинка Крачевска">
-                    <div class="element__info">
-                        <h2 class="element__name-picture hidden-text">Карачаевск</h2>
-                        <button class="element__like" type="button" aria-label="Поставить лайк"></button>
-                    </div>
-                </li>
-                <li class="element">
-                    <img class="element__img" src="./images/elbrus.png" alt="Картинка горы Эльбрус">
-                    <div class="element__info">
-                        <h2 class="element__name-picture hidden-text">Гора Эльбрус</h2>
-                        <button class="element__like" type="button" aria-label="Поставить лайк"></button>
-                    </div>
-                </li>
-                <li class="element">
-                    <img class="element__img" src="./images/dombay.png" alt="Картинка Домбая">
-                    <div class="element__info">
-                        <h2 class="element__name-picture hidden-text">Домбай</h2>
-                        <button class="element__like" type="button" aria-label="Поставить лайк"></button>
-                    </div>
-                </li>
-                <li class="element">
-                    <img class="element__img" src="./images/elbrus.png" alt="Картинка горы Эльбрус">
-                    <div class="element__info">
-                        <h2 class="element__name-picture hidden-text">Гора Эльбрус</h2>
-                        <button class="element__like" type="button" aria-label="Поставить лайк"></button>
-                    </div>
-                </li>
-                <li class="element">
-                    <img class="element__img" src="./images/dombay.png" alt="Картинка Домбая">
-                    <div class="element__info">
-                        <h2 class="element__name-picture hidden-text">Домбай</h2>
-                        <button class="element__like" type="button" aria-label="Поставить лайк"></button>
-                    </div>
-                </li>
-                <li class="element">
-                    <img class="element__img" src="./images/krachevsk.png" alt="Картинка Крачевска">
-                    <div class="element__info">
-                        <h2 class="element__name-picture hidden-text">Карачаево-Черкевск</h2>
-                        <button class="element__like" type="button" aria-label="Поставить лайк"></button>
-                    </div>
-                </li>
             </ul>
         </section>
     </main>
     <footer class="footer">
         <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
     </footer>
-    <div class="popup">
+    <template id="card">
+        <li class="element">
+            <button class="element__bucket" type="button" aria-label="Удалить картинку"></button>
+            <img class="element__img" alt="Картинка пользователя">
+            <div class="element__info">
+                <h2 class="element__name-picture hidden-text">Карачаево-Черкевск</h2>
+                <button class="element__like" type="button" aria-label="Поставить лайк"></button>
+            </div>
+        </li>
+    </template>
+    <div class="popup popup_type_profile-edit">
         <div class="popup__container">
             <button class="popup__btn-close" type="button" aria-label="Закрыть модальное окно"></button>
-            <form class="popup__form" name="user-edit-form">
+            <form class="popup__form popup__form_type_profile-edit" name="user-edit-form">
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <input class="popup__input popup__input_type_name" name="name"
-                    placeholder="Введите имя" value="Жак-Ив Кусто" required>
-                <input class="popup__input popup__input_type_discription" name="discription"
+                <input class="popup__input popup__input_type_user-name" name="user-name" placeholder="Введите имя"
+                    value="Жак-Ив Кусто" required>
+                <input class="popup__input popup__input_type_user-discription" name="user-discription"
                     placeholder="Расскажите о себе" value="Исследователь океана">
                 <button class="popup__btn-save" type="submit" aria-label="Сохранить изменения">Cохранить</button>
             </form>
+        </div>
+    </div>
+    <div class="popup popup_type_card-create">
+        <div class="popup__container">
+            <button class="popup__btn-close" type="button" aria-label="Закрыть модальное окно"></button>
+            <form class="popup__form popup__form_type_card-edit" name="create-card-user">
+                <h2 class="popup__title">Новое место</h2>
+                <input class="popup__input popup__input_type_name-card" name="name-card" placeholder="Название"
+                    required>
+                <input class="popup__input popup__input_type_url-img" name="url-img" placeholder="Ссылка на картинку"
+                    required>
+                <button class="popup__btn-save" type="submit" aria-label="Создать карточку">Создать</button>
+            </form>
+        </div>
+    </div>
+    <div class="popup popup_type_view-card">
+        <div class="popup__container-card">
+            <button class="popup__btn-close" type="button" aria-label="Закрыть модальное окно"></button>
+            <img class="popup__img-card">
+            <h2 class="popup__name-card"></h2>
         </div>
     </div>
     <script src="./scripts/index.js"></script>
