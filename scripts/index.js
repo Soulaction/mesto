@@ -3,6 +3,7 @@ const discriptionUser = document.querySelector('.profile__discription');
 const editProfileButton = document.querySelector('.profile__edit-btn');
 const createCardButton = document.querySelector('.profile__add-btn');
 const gallery = document.querySelector('.elements-list');
+const card = document.querySelector('#card').content;
 
 const popupProfileEdit = document.querySelector('.popup_type_profile-edit');
 const formEditProfile = document.querySelector('.popup__form_type_profile-edit');
@@ -21,40 +22,18 @@ const popupCardImg = popupViewCard.querySelector('.popup__img-card');
 const popupCardName = popupViewCard.querySelector('.popup__name-card');
 const closePopupViewCard = popupViewCard.querySelector('.popup__btn-close');
 
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
 function initGalary() {
-  initialCards.forEach(el => createCard(el));
+  initialCards.forEach(el => {
+    const newCard = createCard(el);
+    addCard(newCard);
+  });
+}
+
+function addCard(newCard) {
+  gallery.prepend(newCard);
 }
 
 function createCard(cardInfo) {
-  const card = document.querySelector('#card').content;
-
   const newCard = card.cloneNode(true);
 
   const imgCard = newCard.querySelector('.element__img');
@@ -79,27 +58,31 @@ function createCard(cardInfo) {
     openViewCard(selectedCard);
   });
 
-  gallery.prepend(newCard);
+  return newCard;
+}
+
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
 }
 
 function openEditProfile() {
-  popupProfileEdit.classList.add('popup_opened');
+  openPopup(popupProfileEdit)
 
   userNameInput.value = nameUser.textContent;
   userDiscriptionInput.value = discriptionUser.textContent;
 }
 
 function openCreateCard() {
-  popupCardCreate.classList.add('popup_opened');
-  cardNameInput.value = '';
-  cardUrlInput.value = '';
+  openPopup(popupCardCreate)
+
+  formCreateCard.reset();
 }
 
-function openViewCard(card) {
-  popupViewCard.classList.add('popup_opened');
-  popupCardImg.src = card.target.src;
-  popupCardImg.alt = card.target.alt;
-  popupCardName.textContent = card.target.nextElementSibling.firstElementChild.textContent;
+function openViewCard(selectedCard) {
+  openPopup(popupViewCard)
+  popupCardImg.src = selectedCard.target.src;
+  popupCardImg.alt = selectedCard.target.alt;
+  popupCardName.textContent = selectedCard.target.nextElementSibling.firstElementChild.textContent;
 }
 
 function closePopup(currentPopup) {
@@ -121,7 +104,8 @@ function submitFormHandlerCreateCard(evt) {
   cardInfo.name = cardNameInput.value;
   cardInfo.link = cardUrlInput.value;
   initialCards.push(cardInfo);
-  createCard(cardInfo);
+  const newCard = createCard(cardInfo);
+  addCard(newCard);
   closePopup(popupCardCreate)
 }
 
