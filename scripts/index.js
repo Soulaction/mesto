@@ -29,10 +29,6 @@ function initGalary() {
   });
 }
 
-function addCard(newCard) {
-  gallery.prepend(newCard);
-}
-
 function createCard(cardInfo) {
   const newCard = card.cloneNode(true);
 
@@ -59,6 +55,10 @@ function createCard(cardInfo) {
   });
 
   return newCard;
+}
+
+function addCard(newCard) {
+  gallery.prepend(newCard);
 }
 
 function openPopup(popup) {
