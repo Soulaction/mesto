@@ -38,11 +38,14 @@
 @import url(../blocks/popup/__form/popup__form.css);
 @import url(../blocks/popup/__input/popup__input.css);
 @import url(../blocks/popup/__input/_type/popup__input_type_user-name.css);
-@import url(../blocks/popup/__input/_type/popup__input_type_user-discription.css);
 @import url(../blocks/popup/__input/_type/popup__input_type_name-card.css);
-@import url(../blocks/popup/__input/_type/popup__input_type_url-img.css);
 @import url(../blocks/popup/__img-card/popup__img-card.css);
 @import url(../blocks/popup/__name-card/popup__name-card.css);
 
+@import url(../blocks/popup/__input/_type/popup__input_type_error.css);
+@import url(../blocks/popup/__error/popup__error.css);
+@import url(../blocks/popup/__error/_visible/popup__error_visible.css);
+
 @import url(../blocks/popup/__btn-save/popup__btn-save.css);
+@import url(../blocks/popup/__btn-save/_disabled/popup__btn-save_disabled.css);
 @import url(../blocks/popup/__btn-close/popup__btn-close.css);

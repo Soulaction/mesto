@@ -9,18 +9,15 @@ const popupProfileEdit = document.querySelector('.popup_type_profile-edit');
 const formEditProfile = document.querySelector('.popup__form_type_profile-edit');
 const userNameInput = formEditProfile.querySelector('.popup__input_type_user-name');
 const userDiscriptionInput = formEditProfile.querySelector('.popup__input_type_user-discription');
-const closePopupProfileEdit = popupProfileEdit.querySelector('.popup__btn-close');
 
 const popupCardCreate = document.querySelector('.popup_type_card-create');
 const formCreateCard = document.querySelector('.popup__form_type_card-edit');
 const cardNameInput = formCreateCard.querySelector('.popup__input_type_name-card');
 const cardUrlInput = formCreateCard.querySelector('.popup__input_type_url-img');
-const closePopupCardCreate = popupCardCreate.querySelector('.popup__btn-close');
 
 const popupViewCard = document.querySelector('.popup_type_view-card');
 const popupCardImg = popupViewCard.querySelector('.popup__img-card');
 const popupCardName = popupViewCard.querySelector('.popup__name-card');
-const closePopupViewCard = popupViewCard.querySelector('.popup__btn-close');
 
 function initGalary() {
   initialCards.forEach(el => {
@@ -62,6 +59,11 @@ function addCard(newCard) {
 }
 
 function openPopup(popup) {
+  const closeButton = popup.querySelector('.popup__btn-close');
+  closeButton.addEventListener('click', closePopup);
+  document.addEventListener('keydown', closePopupOnEsc);
+  popup.addEventListener('mousedown', closePopupOnClickArea);
+
   popup.classList.add('popup_opened');
 }
 
@@ -85,8 +87,22 @@ function openViewCard(selectedCard) {
   popupCardName.textContent = selectedCard.target.nextElementSibling.firstElementChild.textContent;
 }
 
-function closePopup(currentPopup) {
-  currentPopup.classList.remove('popup_opened');
+function closePopup() {
+    const currentPopup = document.querySelector('.popup_opened')
+    currentPopup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closePopupOnEsc)
+}
+
+function closePopupOnEsc(evt) {
+  if (evt.key === 'Escape') {
+    closePopup();
+  }
+}
+
+function closePopupOnClickArea(evt) {
+  if (evt.currentTarget === evt.target) {
+    closePopup();
+  }
 }
 
 function submitFormHandlerEditProfile(evt) {
@@ -94,7 +110,7 @@ function submitFormHandlerEditProfile(evt) {
 
   nameUser.textContent = userNameInput.value;
   discriptionUser.textContent = userDiscriptionInput.value;
-  closePopup(popupProfileEdit)
+  closePopup()
 }
 
 function submitFormHandlerCreateCard(evt) {
@@ -106,15 +122,12 @@ function submitFormHandlerCreateCard(evt) {
   initialCards.push(cardInfo);
   const newCard = createCard(cardInfo);
   addCard(newCard);
-  closePopup(popupCardCreate)
+  closePopup();
 }
 
 formEditProfile.addEventListener('submit', submitFormHandlerEditProfile);
 formCreateCard.addEventListener('submit', submitFormHandlerCreateCard);
 editProfileButton.addEventListener('click', openEditProfile);
-closePopupProfileEdit.addEventListener('click', () => closePopup(popupProfileEdit));
 createCardButton.addEventListener('click', openCreateCard);
-closePopupCardCreate.addEventListener('click', () => closePopup(popupCardCreate));
-closePopupViewCard.addEventListener('click', () => closePopup(popupViewCard));
 
 initGalary();
