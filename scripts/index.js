@@ -125,14 +125,14 @@ function submitFormHandlerCreateCard(evt, currentPopup) {
   closePopup(currentPopup);
 }
 
-formEditProfile.addEventListener('submit', (evt) => submitFormHandlerEditProfile(evt, popupProfileEdit)); 
-formCreateCard.addEventListener('submit', (evt) => submitFormHandlerCreateCard(evt, popupCardCreate)); 
+formEditProfile.addEventListener('submit', (evt) => submitFormHandlerEditProfile(evt, popupProfileEdit));
+formCreateCard.addEventListener('submit', (evt) => submitFormHandlerCreateCard(evt, popupCardCreate));
 editProfileButton.addEventListener('click', openEditProfile);
 createCardButton.addEventListener('click', openCreateCard);
 
 closeButtons.forEach(button => button.addEventListener('click', () => {
-    const currentPopup = button.closest('.popup');
-    closePopup(currentPopup);
+  const currentPopup = button.closest('.popup');
+  closePopup(currentPopup);
 }));
 
 initGalary();
