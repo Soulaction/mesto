@@ -61,7 +61,6 @@ function addCard(newCard) {
 function openPopup(popup) {
   document.addEventListener('keydown', closePopupOnEsc);
   popup.addEventListener('mousedown', closePopupOnClickArea);
-
   popup.classList.add('popup_opened');
 }
 
@@ -87,35 +86,34 @@ function openViewCard(selectedCard) {
   popupCardName.textContent = selectedCard.target.nextElementSibling.firstElementChild.textContent;
 }
 
-function closePopup() {
-  const popup = document.querySelector('.popup_opened');
+function closePopup(currentPopup) {
   document.removeEventListener('keydown', closePopupOnEsc);
-  popup.removeEventListener('mousedown', closePopupOnClickArea);
-  popup.classList.remove('popup_opened');
+  currentPopup.removeEventListener('mousedown', closePopupOnClickArea);
+  currentPopup.classList.remove('popup_opened');
 }
 
 function closePopupOnEsc(evt) {
-  console.log('ecs');
   if (evt.key === 'Escape') {
-    closePopup();
+    const currentPopup = document.querySelector('.popup_opened')
+    closePopup(currentPopup);
   }
 }
 
 function closePopupOnClickArea(evt) {
   if (evt.currentTarget === evt.target) {
-    closePopup();
+    closePopup(evt.currentTarget);
   }
 }
 
-function submitFormHandlerEditProfile(evt) {
+function submitFormHandlerEditProfile(evt, currentPopup) {
   evt.preventDefault();
 
   nameUser.textContent = userNameInput.value;
   discriptionUser.textContent = userDiscriptionInput.value;
-  closePopup();
+  closePopup(currentPopup);
 }
 
-function submitFormHandlerCreateCard(evt) {
+function submitFormHandlerCreateCard(evt, currentPopup) {
   evt.preventDefault();
 
   const cardInfo = {};
@@ -124,13 +122,17 @@ function submitFormHandlerCreateCard(evt) {
   initialCards.push(cardInfo);
   const newCard = createCard(cardInfo);
   addCard(newCard);
-  closePopup();
+  closePopup(currentPopup);
 }
 
-formEditProfile.addEventListener('submit', submitFormHandlerEditProfile);
-formCreateCard.addEventListener('submit', submitFormHandlerCreateCard);
+formEditProfile.addEventListener('submit', (evt) => submitFormHandlerEditProfile(evt, popupProfileEdit)); 
+formCreateCard.addEventListener('submit', (evt) => submitFormHandlerCreateCard(evt, popupCardCreate)); 
 editProfileButton.addEventListener('click', openEditProfile);
 createCardButton.addEventListener('click', openCreateCard);
-closeButtons.forEach(button => button.addEventListener('click', closePopup));
+
+closeButtons.forEach(button => button.addEventListener('click', () => {
+    const currentPopup = button.closest('.popup');
+    closePopup(currentPopup);
+}));
 
 initGalary();
