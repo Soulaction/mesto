@@ -1,3 +1,9 @@
+export class FormValidator {
+    constructor(validationConfig, form) {
+        this._validationConfig = validationConfig;
+        this._form = form;
+    }
+}
 function showInputError(inputForm, validationConfig) {
     const errorMessage = document.querySelector(`.${inputForm.id}-error`);
     inputForm.classList.add(validationConfig.inputErrorClass);

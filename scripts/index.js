@@ -1,9 +1,11 @@
+import {Card} from './Card.js'
+import {initialCards, validationConfig} from './constants.js'
+
 const nameUser = document.querySelector('.profile__nike-name');
 const discriptionUser = document.querySelector('.profile__discription');
 const editProfileButton = document.querySelector('.profile__edit-btn');
 const createCardButton = document.querySelector('.profile__add-btn');
 const gallery = document.querySelector('.elements-list');
-const card = document.querySelector('#card').content;
 
 const popupProfileEdit = document.querySelector('.popup_type_profile-edit');
 const formEditProfile = document.querySelector('.popup__form_type_profile-edit');
@@ -22,36 +24,11 @@ const popupCardName = popupViewCard.querySelector('.popup__name-card');
 const closeButtons = document.querySelectorAll('.popup__btn-close');
 
 function initGalary() {
-  initialCards.forEach(el => {
-    const newCard = createCard(el);
+  initialCards.forEach(cardInfo => {
+    const card = new Card(cardInfo, '#card', openViewCard);
+    const newCard = card.createCard();
     addCard(newCard);
   });
-}
-
-function createCard(cardInfo) {
-  const newCard = card.cloneNode(true);
-
-  const imgCard = newCard.querySelector('.element__img');
-  const nameCard = newCard.querySelector('.element__name-picture');
-  const likeCard = newCard.querySelector('.element__like');
-  const deleteCard = newCard.querySelector('.element__bucket');
-
-  imgCard.src = cardInfo.link;
-  imgCard.alt = 'Картинка ' + cardInfo.name;
-  nameCard.textContent = cardInfo.name;
-
-  likeCard.addEventListener('click', () => {
-    likeCard.classList.toggle('element__like_active');
-  });
-
-  deleteCard.addEventListener('click', () => {
-    const selectedCard = deleteCard.closest('.element');
-    selectedCard.remove();
-  });
-
-  imgCard.addEventListener('click', openViewCard);
-
-  return newCard;
 }
 
 function addCard(newCard) {
