@@ -1,5 +1,6 @@
-import {Card} from './Card.js'
-import {initialCards, validationConfig} from './constants.js'
+import { Card } from './Card.js'
+import { initialCards, validationConfig } from './constants.js'
+import { FormValidator } from './FormValidator.js'
 
 const nameUser = document.querySelector('.profile__nike-name');
 const discriptionUser = document.querySelector('.profile__discription');
@@ -23,15 +24,21 @@ const popupCardName = popupViewCard.querySelector('.popup__name-card');
 
 const closeButtons = document.querySelectorAll('.popup__btn-close');
 
+//Установка валидации форм
+const validateEditProfile = new FormValidator(validationConfig, formEditProfile);
+validateEditProfile.enableValidation();
+const validateCreateCard = new FormValidator(validationConfig, formCreateCard);
+validateCreateCard.enableValidation();
+
 function initGalary() {
   initialCards.forEach(cardInfo => {
-    const card = new Card(cardInfo, '#card', openViewCard);
-    const newCard = card.createCard();
-    addCard(newCard);
+    addCard(cardInfo);
   });
 }
 
-function addCard(newCard) {
+function addCard(cardInfo) {
+  const card = new Card(cardInfo, '#card', openViewCard);
+  const newCard = card.createCard();
   gallery.prepend(newCard);
 }
 
@@ -44,7 +51,7 @@ function openPopup(popup) {
 function openEditProfile() {
   openPopup(popupProfileEdit);
   formEditProfile.reset();
-  setDisableButtonForm(popupProfileEdit, validationConfig);
+  validateEditProfile.setDisableButtonForm();
 
   userNameInput.value = nameUser.textContent;
   userDiscriptionInput.value = discriptionUser.textContent;
@@ -53,7 +60,7 @@ function openEditProfile() {
 function openCreateCard() {
   openPopup(popupCardCreate);
   formCreateCard.reset();
-  setDisableButtonForm(popupCardCreate, validationConfig);
+  validateCreateCard.setDisableButtonForm();
 }
 
 function openViewCard(selectedCard) {
@@ -97,8 +104,7 @@ function submitFormHandlerCreateCard(evt, currentPopup) {
   cardInfo.name = cardNameInput.value;
   cardInfo.link = cardUrlInput.value;
   initialCards.push(cardInfo);
-  const newCard = createCard(cardInfo);
-  addCard(newCard);
+  addCard(cardInfo);
   closePopup(currentPopup);
 }
 

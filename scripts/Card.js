@@ -11,22 +11,18 @@ export class Card {
         return elementCard;
     }
 
-    _setElementsCard() {
-        this._likeCard = this._card.querySelector('.element__like');
-        this._buttonDeleteCard = this._card.querySelector('.element__bucket');
-    }
-
     createCard() {
         this._card = this._getTamlateCard();
-        this._setElementsCard();
-        this._setEventListeners();
-        const imgCard = this._card.querySelector('.element__img');
+        this._imgCard = this._card.querySelector('.element__img')
+        this._likeCard = this._card.querySelector('.element__like');
+        this._buttonDeleteCard = this._card.querySelector('.element__bucket');
         const nameCard = this._card.querySelector('.element__name-picture');
 
-        imgCard.src = this._link;
-        imgCard.alt = 'Картинка ' + this._name;
+        this._imgCard .src = this._link;
+        this._imgCard .alt = 'Картинка ' + this._name;
         nameCard.textContent = this._name;
-
+        
+        this._setEventListeners();
         return this._card;
     }
 
@@ -34,7 +30,7 @@ export class Card {
         this._likeCard.addEventListener('click', () => {
             this._handleSetLikeOnCard();
         });
-        this._card.querySelector('.element__img').addEventListener('click', (evt) => {
+        this._imgCard.addEventListener('click', (evt) => {
             this._handleOpenViewCard(evt);
         });
         this._buttonDeleteCard.addEventListener('click', () => {
