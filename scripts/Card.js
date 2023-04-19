@@ -18,10 +18,10 @@ export class Card {
         this._buttonDeleteCard = this._card.querySelector('.element__bucket');
         const nameCard = this._card.querySelector('.element__name-picture');
 
-        this._imgCard .src = this._link;
-        this._imgCard .alt = 'Картинка ' + this._name;
+        this._imgCard.src = this._link;
+        this._imgCard.alt = 'Картинка ' + this._name;
         nameCard.textContent = this._name;
-        
+
         this._setEventListeners();
         return this._card;
     }
