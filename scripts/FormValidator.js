@@ -2,6 +2,8 @@ export class FormValidator {
     constructor(validationConfig, form) {
         this._validationConfig = validationConfig;
         this._form = form;
+        this._fieldFormList = Array.from(this._form.querySelectorAll(this._validationConfig.inputSelector));
+        this._buttonForm = this._form.querySelector(this._validationConfig.submitButtonSelector);
     }
 
     _showInputError(inputForm) {
@@ -26,33 +28,32 @@ export class FormValidator {
         }
     }
 
-    _checkValidateForm(fieldFormList) {
-        return fieldFormList.some(field => !field.validity.valid)
+    _checkValidateForm() {
+        return this._fieldFormList.some(field => !field.validity.valid)
     }
 
-    _toggleButtonState(fieldFormList, buttonForm) {
-        if (this._checkValidateForm(fieldFormList)) {
-            buttonForm.classList.add(this._validationConfig.inactiveButtonClass);
-            buttonForm.setAttribute('disabled', true);
+    _toggleButtonState() {
+        if (this._checkValidateForm()) {
+            this._buttonForm.classList.add(this._validationConfig.inactiveButtonClass);
+            this._buttonForm.setAttribute('disabled', true);
         } else {
-            buttonForm.classList.remove(this._validationConfig.inactiveButtonClass);
-            buttonForm.removeAttribute('disabled');
+            this._buttonForm.classList.remove(this._validationConfig.inactiveButtonClass);
+            this._buttonForm.removeAttribute('disabled');
         }
     }
 
-    setDisableButtonForm() {
-        const fieldFormList = Array.from(this._form.querySelectorAll(this._validationConfig.inputSelector));
-        const buttonForm = this._form.querySelector(this._validationConfig.submitButtonSelector);
-        this._toggleButtonState(fieldFormList, buttonForm);
+    rebootForm() {
+        this._fieldFormList.forEach(input => {
+            this._hideInputError(input);
+        })
+        this._toggleButtonState();
     }
 
     _setEventValidateListener() {
-        const fieldFormList = Array.from(this._form.querySelectorAll(this._validationConfig.inputSelector));
-        const buttonForm = this._form.querySelector(this._validationConfig.submitButtonSelector);
-        fieldFormList.forEach(input => {
+        this._fieldFormList.forEach(input => {
             input.addEventListener('input', () => {
                 this._checkValidateInputForm(input);
-                this._toggleButtonState(fieldFormList, buttonForm);
+                this._toggleButtonState();
             })
         });
     }

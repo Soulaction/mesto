@@ -51,7 +51,7 @@ function openPopup(popup) {
 function openEditProfile() {
   openPopup(popupProfileEdit);
   formEditProfile.reset();
-  validateEditProfile.setDisableButtonForm();
+  validateEditProfile.rebootForm();
 
   userNameInput.value = nameUser.textContent;
   userDiscriptionInput.value = discriptionUser.textContent;
@@ -60,7 +60,7 @@ function openEditProfile() {
 function openCreateCard() {
   openPopup(popupCardCreate);
   formCreateCard.reset();
-  validateCreateCard.setDisableButtonForm();
+  validateCreateCard.rebootForm();
 }
 
 function openViewCard(selectedCard) {
@@ -103,7 +103,6 @@ function submitFormHandlerCreateCard(evt, currentPopup) {
   const cardInfo = {};
   cardInfo.name = cardNameInput.value;
   cardInfo.link = cardUrlInput.value;
-  initialCards.push(cardInfo);
   addCard(cardInfo);
   closePopup(currentPopup);
 }
