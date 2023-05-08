@@ -1,5 +1,6 @@
 export class Card {
     constructor(card, templateSelector, handleOpenViewCard) {
+        console.log(card);
         this._name = card.name;
         this._link = card.link;
         this._templateSelector = templateSelector;

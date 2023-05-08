@@ -45,11 +45,11 @@
             <button class="popup__btn-close" type="button" aria-label="Закрыть модальное окно"></button>
             <form class="popup__form popup__form_type_profile-edit" name="user-edit-form" novalidate>
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <input id="user-name" class="popup__input popup__input_type_user-name" name="user-name" minlength="2"
+                <input id="user-name" class="popup__input popup__input_type_user-name" name="name" minlength="2"
                     maxlength="40" required placeholder="Введите имя">
                 <span class="popup__error user-name-error"></span>
                 <input id="user-discription" class="popup__input popup__input_type_user-discription" minlength="2"
-                    maxlength="200" required name="user-discription" placeholder="Расскажите о себе">
+                    maxlength="200" required name="discription" placeholder="Расскажите о себе">
                 <span class="popup__error user-discription-error"></span>
                 <button class="popup__btn-save" type="submit" aria-label="Сохранить изменения">Cохранить</button>
             </form>
@@ -60,10 +60,10 @@
             <button class="popup__btn-close" type="button" aria-label="Закрыть модальное окно"></button>
             <form class="popup__form popup__form_type_card-edit" name="create-card-user" novalidate>
                 <h2 class="popup__title">Новое место</h2>
-                <input id="name-card" class="popup__input popup__input_type_name-card" name="name-card" minlength="2"
+                <input id="name-card" class="popup__input popup__input_type_name-card" name="name" minlength="2"
                     maxlength="30" required placeholder="Название">
                 <span class="popup__error name-card-error"></span>
-                <input id="url-img" class="popup__input popup__input_type_url-img" name="url-img" type="url" required
+                <input id="url-img" class="popup__input popup__input_type_url-img" name="link" type="url" required
                     placeholder="Ссылка на картинку">
                 <span class="popup__error url-img-error"></span>
                 <button class="popup__btn-save" type="submit" aria-label="Создать карточку">Создать</button>
@@ -80,7 +80,9 @@
     <script type="module" src="./scripts/constants.js"></script>
     <script type="module" src="./scripts/Card.js"></script>
     <script type="module" src="./scripts/FormValidator.js"></script>
+    <script type="module" src="./scripts/PopupWithForm.js"></script>
     <script type="module" src="./scripts/index.js"></script>
+    <script type="module" src="./scripts/Popup.js"></script>
 </body>
 
 </html>

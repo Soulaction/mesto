@@ -1,4 +1,4 @@
-const initialCards = [
+export const initialCards = [
   {
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -25,7 +25,7 @@ const initialCards = [
   }
 ];
 
-const validationConfig = {
+export const validationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__btn-save',
@@ -34,4 +34,7 @@ const validationConfig = {
   errorClass: 'popup__error_visible'
 }
 
-export {initialCards, validationConfig};
+export const nameUser = document.querySelector('.profile__nike-name');
+export const discriptionUser = document.querySelector('.profile__discription');
+export const editProfileButton = document.querySelector('.profile__edit-btn');
+export const createCardButton = document.querySelector('.profile__add-btn');
