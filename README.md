@@ -11,6 +11,8 @@
 5. Псевдоклассы
 6. Позиционирование
 7. DOM
+8. ООП
+9. Webpack
 
 **GitHub Pages**
 Данная работа опубликована на платформе GitHub Pages, работу можно посмотреть по [ссылке](https://soulaction.github.io/mesto/)
