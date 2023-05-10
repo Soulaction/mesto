@@ -9,7 +9,7 @@ export class PopupWithForm extends Popup {
 
     _getInputValues() {
         this._valuesInputForm = {};
-        this._listInputForm.forEach(({name, value}) => {
+        this._listInputForm.forEach(({ name, value }) => {
             this._valuesInputForm[name] = value;
         });
         return this._valuesInputForm;
@@ -17,7 +17,7 @@ export class PopupWithForm extends Popup {
 
     setInputValues(inputValues) {
         this._listInputForm.forEach((input) => {
-            if(input.name in inputValues) {
+            if (input.name in inputValues) {
                 input.value = inputValues[input.name];
             }
         });

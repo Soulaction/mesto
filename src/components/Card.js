@@ -1,6 +1,5 @@
 export class Card {
     constructor(card, templateSelector, handleOpenViewCard) {
-        console.log(card);
         this._name = card.name;
         this._link = card.link;
         this._templateSelector = templateSelector;
@@ -31,8 +30,8 @@ export class Card {
         this._likeCard.addEventListener('click', () => {
             this._handleSetLikeOnCard();
         });
-        this._imgCard.addEventListener('click', (evt) => {
-            this._handleOpenViewCard(evt);
+        this._imgCard.addEventListener('click', () => {
+            this._handleOpenViewCard();
         });
         this._buttonDeleteCard.addEventListener('click', () => {
             this._handleDeleteCard();
