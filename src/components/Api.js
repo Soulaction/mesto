@@ -22,7 +22,7 @@ export class Api {
     }
 
     getUserInfo() {
-        return fetch(this.baseUrl + '/usrrs/me', {
+        return fetch(this.baseUrl + '/users/me', {
             method: 'GET',
             headers: {
                 authorization: this.token
@@ -37,7 +37,7 @@ export class Api {
             })
     }
 
-    updateUserInfo(name, about) {
+    updateUserInfo({name, about}) {
         return fetch(this.baseUrl + '/users/me', {
             method: 'PATCH',
             headers: {
@@ -58,28 +58,7 @@ export class Api {
             })
     }
 
-    updateUserInfo(name, about) {
-        return fetch(this.baseUrl + '/users/me', {
-            method: 'PATCH',
-            headers: {
-                authorization: this.token,
-                'Content-Type': this.contentType
-            },
-            body: JSON.stringify({
-                name,
-                about
-            })
-        })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                } else {
-                    return Promise.reject(`Ошибка: ${res.status}`);
-                }
-            })
-    }
-
-    addNewCard(name, link) {
+    addNewCard({name, link}) {
         return fetch(this.baseUrl + '/cards', {
             method: 'POST',
             headers: {

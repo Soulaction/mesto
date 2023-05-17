@@ -12,7 +12,9 @@ export const templateSelector = '#card';
 
 export const userConfig = {
   name: document.querySelector('.profile__nike-name'),
-  discription: document.querySelector('.profile__discription')
+  about: document.querySelector('.profile__discription'),
+  avatar: document.querySelector('.profile__avatar'),
+
 };
 export const editProfileButton = document.querySelector('.profile__edit-btn');
 export const createCardButton = document.querySelector('.profile__add-btn');
@@ -25,7 +27,7 @@ export const formCreateCard = document.querySelector('.popup__form_type_card-edi
 
 export const popupViewCard = document.querySelector('.popup_type_view-card');
 
-export const popupConfirm = document.querySelector('.popup_type_confirm');
+export const popupConfirmCard = document.querySelector('.popup_type_confirm');
 
 export const configApi = {
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-66',
