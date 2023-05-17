@@ -1,6 +1,6 @@
 import './index.css';
 import { 
-  initialCards,
+  configApi,
   validationConfig,
   selectorSection,
   templateSelector,
@@ -18,6 +18,10 @@ import { FormValidator } from '../components/FormValidator.js'
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { UserInfo } from '../components/UserInfo.js';
+import { Api } from '../components/Api.js';
+
+//Создание объекта API
+const api = new Api(configApi);
 
 //Создание объекта пользователя
 const user = new UserInfo(userConfig);
@@ -29,22 +33,26 @@ const validateCreateCard = new FormValidator(validationConfig, formCreateCard);
 validateCreateCard.enableValidation();
 
 //Отрисовка карточек
-const sectionCards = new Section(
-  {
-    items: initialCards,
-    renderer: (item) => {
-      const card = new Card(item,
-        templateSelector,
-        () => {
-          popupViewСardImage.open(item);
-        }
-      );
-      const newCard = card.createCard();
-      return newCard;
-    }
-  },
-  selectorSection
-);
+api.getInitialCards()
+.then(cards => {
+  const sectionCards = new Section(
+    {
+      items: cards,
+      renderer: (item) => {
+        const card = new Card(item,
+          templateSelector,
+          () => {
+            popupViewСardImage.open(item);
+          }
+        );
+        const newCard = card.createCard();
+        return newCard;
+      }
+    },
+    selectorSection
+  );
+  sectionCards.renderItems();
+}).catch(err => console.log(err))
 
 //Создание модальных окон
 const popupViewСardImage = new PopupWithImage(popupViewCard);
@@ -60,7 +68,8 @@ const popupEditProfile = new PopupWithForm(popupProfileEdit, (userInfo) => {
 });
 popupEditProfile.setEventListeners();
 
-sectionCards.renderItems();
+const popupConfirm = new PopupWithImage(popupViewCard);
+popupViewСardImage.setEventListeners();
 
 editProfileButton.addEventListener('click', () => {
   popupEditProfile.setInputValues(user.getUserInfo());
