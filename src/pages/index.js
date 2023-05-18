@@ -12,13 +12,14 @@ import {
   popupCardCreate,
   formCreateCard,
   popupViewCard,
-  popupConfirmCard
+  popupConfirmSelector
 } from '../utils/constants.js'
 import { Section } from '../components/Section.js';
 import { Card } from '../components/Card.js'
 import { FormValidator } from '../components/FormValidator.js'
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
+import { PopupConfirm } from '../components/PopupConfirm.js';
 import { UserInfo } from '../components/UserInfo.js';
 import { Api } from '../components/Api.js';
 
@@ -29,6 +30,7 @@ const api = new Api(configApi);
 const user = new UserInfo(userConfig);
 api.getUserInfo()
   .then(userInfo => {
+    console.log(userInfo);
     user.setUserInfo(userInfo);
   })
   .catch(err => console.log(err))
@@ -49,11 +51,12 @@ api.getInitialCards()
       {
         items: cards,
         renderer: (item) => {
-          const card = new Card(item,
+          const card = new Card(
+            item,
             templateSelector,
-            () => {
-              popupViewСardImage.open(item);
-            }
+            user.getUserInfo(),
+            () => popupViewСardImage.open(item),
+            () => popupConfirm.open(item)
           );
           const newCard = card.createCard();
           return newCard;
@@ -89,8 +92,13 @@ const popupEditProfile = new PopupWithForm(popupProfileEdit, (userInfo) => {
 });
 popupEditProfile.setEventListeners();
 
-const popupConfirm = new PopupWithImage(popupConfirmCard);
-popupViewСardImage.setEventListeners();
+const popupConfirm = new PopupConfirm(popupConfirmSelector, (cardId) => {
+  api.deleteCard(cardId)
+  .then(data => {
+    console.log(data);
+  })
+});
+popupConfirm.setEventListeners();
 
 editProfileButton.addEventListener('click', () => {
   popupEditProfile.setInputValues(user.getUserInfo());

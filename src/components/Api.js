@@ -37,7 +37,7 @@ export class Api {
             })
     }
 
-    updateUserInfo({name, about}) {
+    updateUserInfo({ name, about }) {
         return fetch(this.baseUrl + '/users/me', {
             method: 'PATCH',
             headers: {
@@ -58,7 +58,7 @@ export class Api {
             })
     }
 
-    addNewCard({name, link}) {
+    addNewCard({ name, link }) {
         return fetch(this.baseUrl + '/cards', {
             method: 'POST',
             headers: {
@@ -69,6 +69,54 @@ export class Api {
                 name,
                 link
             })
+        })
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                } else {
+                    return Promise.reject(`Ошибка: ${res.status}`);
+                }
+            })
+    }
+
+    deleteCard(cardId) {
+        return fetch(`${this.baseUrl}/cards/${cardId}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: this.token
+            }
+        })
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                } else {
+                    return Promise.reject(`Ошибка: ${res.status}`);
+                }
+            })
+    }
+
+    setLike(cardId) {
+        return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
+            method: 'PUT',
+            headers: {
+                authorization: this.token
+            }
+        })
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                } else {
+                    return Promise.reject(`Ошибка: ${res.status}`);
+                }
+            })
+    }
+
+    deleteLike(cardId) {
+        return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
+            method: 'DELETE',
+            headers: {
+                authorization: this.token
+            }
         })
             .then(res => {
                 if (res.ok) {
