@@ -18,9 +18,13 @@ export const userConfig = {
 };
 export const editProfileButton = document.querySelector('.profile__edit-btn');
 export const createCardButton = document.querySelector('.profile__add-btn');
+export const updateAvatarUser = document.querySelector('.profile__avatar-edit-btn');
 
 export const popupProfileEdit = document.querySelector('.popup_type_profile-edit');
 export const formEditProfile = popupProfileEdit.querySelector('.popup__form_type_profile-edit');
+
+export const popupUpdateAvatar = document.querySelector('.popup_type_update-avatar');
+export const formUpdateAvatar = popupUpdateAvatar.querySelector('.popup__form_type_update-avatar');
 
 export const popupCardCreate = document.querySelector('.popup_type_card-create');
 export const formCreateCard = popupCardCreate.querySelector('.popup__form_type_card-edit');
@@ -29,11 +33,3 @@ export const popupViewCard = document.querySelector('.popup_type_view-card');
 
 export const popupConfirmSelector = document.querySelector('.popup_type_confirm');
 export const formConfirmSelector = popupConfirmSelector.querySelector('.popup__form_type_confirm');
-
-export const configApi = {
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-66',
-  headers: {
-    authorization: 'd3622e91-6a1b-4880-942f-1e681389a2d9',
-    'Content-Type': 'application/json'
-  }
-}

@@ -1,17 +1,19 @@
 import './index.css';
 import {
-  configApi,
   validationConfig,
   selectorSection,
   templateSelector,
   userConfig,
   editProfileButton,
   createCardButton,
+  updateAvatarUser,
   popupProfileEdit,
   formEditProfile,
   popupCardCreate,
   formCreateCard,
   popupViewCard,
+  popupUpdateAvatar,
+  formUpdateAvatar,
   popupConfirmSelector
 } from '../utils/constants.js'
 import { Section } from '../components/Section.js';
@@ -21,10 +23,7 @@ import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { PopupConfirm } from '../components/PopupConfirm.js';
 import { UserInfo } from '../components/UserInfo.js';
-import { Api } from '../components/Api.js';
-
-//Создание объекта API
-const api = new Api(configApi);
+import { api } from '../components/Api.js';
 
 //Создание объекта пользователя
 const user = new UserInfo(userConfig);
@@ -40,7 +39,7 @@ const validateEditProfile = new FormValidator(validationConfig, formEditProfile)
 validateEditProfile.enableValidation();
 const validateCreateCard = new FormValidator(validationConfig, formCreateCard);
 validateCreateCard.enableValidation();
-const validateAvatarUser = new FormValidator(validationConfig, formCreateCard);
+const validateAvatarUser = new FormValidator(validationConfig, formUpdateAvatar);
 validateAvatarUser.enableValidation();
 
 let sectionCards;
@@ -56,7 +55,9 @@ api.getInitialCards()
             templateSelector,
             user.getUserInfo(),
             () => popupViewСardImage.open(item),
-            () => popupConfirm.open(item)
+            () => popupConfirm.open(item),
+            (id) => api.setLike(id),
+            (id) => api.deleteLike(id)
           );
           const newCard = card.createCard();
           return newCard;
@@ -92,6 +93,16 @@ const popupEditProfile = new PopupWithForm(popupProfileEdit, (userInfo) => {
 });
 popupEditProfile.setEventListeners();
 
+const popupAvatarUpdate = new PopupWithForm(popupUpdateAvatar, (userInfo) => {
+  api.updateAvatarUser(userInfo)
+  .then(refreshUser => {
+    user.setUserInfo(refreshUser);
+  })
+  .catch(err => console.log(err));
+  
+});
+popupAvatarUpdate.setEventListeners();
+
 const popupConfirm = new PopupConfirm(popupConfirmSelector, (cardId) => {
   api.deleteCard(cardId)
   .then(data => {
@@ -109,4 +120,10 @@ editProfileButton.addEventListener('click', () => {
 createCardButton.addEventListener('click', () => {
   validateCreateCard.rebootForm();
   popupСardСreate.open();
+});
+
+updateAvatarUser.addEventListener('click', () => {
+  popupAvatarUpdate.setInputValues(user.getUserInfo());
+  validateCreateCard.rebootForm();
+  popupAvatarUpdate.open();
 });

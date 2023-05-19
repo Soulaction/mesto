@@ -15,9 +15,10 @@ export class UserInfo {
     }
 
     setUserInfo(userInfo) {
+        console.log(userInfo);
         this._id = userInfo._id;
         this._name.textContent = userInfo.name;
         this._about.textContent = userInfo.about;
-        this._avatar.textContent = userInfo.avatar;
+        this._avatar.src = userInfo.avatar;
     }
 }

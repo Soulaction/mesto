@@ -42,6 +42,7 @@
 @import url(../blocks/popup/__input/popup__input.css);
 @import url(../blocks/popup/__input/_type/popup__input_type_user-name.css);
 @import url(../blocks/popup/__input/_type/popup__input_type_name-card.css);
+@import url(../blocks/popup/__input/_type/popup__input_type_link-avatar.css);
 @import url(../blocks/popup/__img-card/popup__img-card.css);
 @import url(../blocks/popup/__name-card/popup__name-card.css);
 

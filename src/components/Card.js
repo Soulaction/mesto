@@ -1,12 +1,16 @@
 export class Card {
-    constructor(card, templateSelector, userInfo, handleOpenViewCard, handleConfirmDialog) {
+    constructor(card, templateSelector, userInfo, handleOpenViewCard, handleConfirmDialog, handleSetLike, handleDeleteLike) {
+        this._id = card._id;
         this._name = card.name;
         this._link = card.link;
         this._likes = card.likes;
         this._templateSelector = templateSelector;
         this._handleOpenViewCard = handleOpenViewCard;
         this._handleConfirmDialog = handleConfirmDialog;
-        this._isLike = this._likes.includes(userInfo.id);
+        this._handleSetLike = handleSetLike;
+        this._handleDeleteLike = handleDeleteLike;
+        this._isLike = !!card.likes.find(({_id}) => _id === userInfo.id);
+        console.log(userInfo.id);
         this._isMyCard = card.owner._id === userInfo.id;
     }
 
@@ -54,11 +58,30 @@ export class Card {
     }
 
     _handleSetLikeOnCard() {
-        this._likeCard.classList.toggle('element__like_active');
+        if (this._isLike) {
+            this._handleDeleteLike(this._id)
+            .then(res => {
+                this._isLike = !this._isLike;
+                this._countLikesElement.textContent = res.likes.length;
+                this._likes = res.likes;
+                this._likeCard.classList.remove('element__like_active');
+            })
+            .catch(err => console.log(err));
+            
+        } else {
+            this._handleSetLike(this._id)
+            .then(res => {
+                this._isLike = !this._isLike;
+                this._countLikesElement.textContent = res.likes.length;
+                this._likes = res.likes;
+                this._likeCard.classList.add('element__like_active');
+            })
+            .catch(err => console.log(err));
+        }
     }
 
     _handleDeleteCard() {
         this._handleConfirmDialog()
-            // .then(() => this._card.remove());
+        // .then(() => this._card.remove());
     }
 }
