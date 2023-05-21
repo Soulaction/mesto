@@ -6,8 +6,9 @@ export class PopupConfirm extends Popup {
         this._handleConfirm = handleConfirm;
     }
 
-    open({_id}) {
-        this._id = _id;
+    open(id, extendForHandleConfirm) {
+        this._id = id;
+        this._extendForHandleConfirm = extendForHandleConfirm ? extendForHandleConfirm : () => { };
         super.open();
     }
 
@@ -16,7 +17,12 @@ export class PopupConfirm extends Popup {
         this._form = this._popupElement.querySelector('.popup__form');
         this._form.addEventListener('submit', (evt) => {
             evt.preventDefault();
-            this._handleConfirm(this._id);
+            this._handleConfirm(this._id)
+                .then(data => {
+                    console.log(data);
+                    this._extendForHandleConfirm();
+                })
+                .catch(err => console.log(err));;
             this.close();
         });
     }

@@ -27,12 +27,27 @@ import { api } from '../components/Api.js';
 
 //Создание объекта пользователя
 const user = new UserInfo(userConfig);
-api.getUserInfo()
-  .then(userInfo => {
-    console.log(userInfo);
-    user.setUserInfo(userInfo);
-  })
-  .catch(err => console.log(err))
+let sectionCards;
+
+//Функция создания карточки
+const renderCard = (item) => {
+  const card = new Card(
+    item,
+    templateSelector,
+    user.getUserInfo(),
+    () => popupViewСardImage.open(item),
+    (id, extendForHandleConfirm) => popupConfirm.open(id, extendForHandleConfirm),
+    (id) => {
+      if (card.isLike()) {
+        return api.deleteLike(id);
+      } else {
+        return api.setLike(id);
+      }
+    },
+  );
+  const newCard = card.createCard();
+  return newCard;
+}
 
 //Установка валидации форм
 const validateEditProfile = new FormValidator(validationConfig, formEditProfile);
@@ -42,72 +57,61 @@ validateCreateCard.enableValidation();
 const validateAvatarUser = new FormValidator(validationConfig, formUpdateAvatar);
 validateAvatarUser.enableValidation();
 
-let sectionCards;
-
-api.getInitialCards()
-  .then(cards => {
+//Получение информации о пользователе и рендеринг карточек
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userInfo, cards]) => {
+    user.setUserInfo(userInfo);
     sectionCards = new Section(
       {
         items: cards,
-        renderer: (item) => {
-          const card = new Card(
-            item,
-            templateSelector,
-            user.getUserInfo(),
-            () => popupViewСardImage.open(item),
-            () => popupConfirm.open(item),
-            (id) => api.setLike(id),
-            (id) => api.deleteLike(id)
-          );
-          const newCard = card.createCard();
-          return newCard;
-        }
+        renderer: (item) => renderCard(item)
       },
       selectorSection
     );
     sectionCards.renderItems();
-  }).catch(err => console.log(err))
+  })
+  .catch(err => console.log('Ошибка: ' + err));
 
 //Создание модальных окон
 const popupViewСardImage = new PopupWithImage(popupViewCard);
 popupViewСardImage.setEventListeners();
 
-
 const popupСardСreate = new PopupWithForm(popupCardCreate, (card) => {
   api.addNewCard(card)
-  .then(refreshCard => {
-    sectionCards.addItem(refreshCard);
-  })
-  .catch(err => console.log(err));
+    .then(refreshCard => {
+      sectionCards.addItem(refreshCard);
+      popupСardСreate.close();
+    })
+    .catch(err => console.log(err))
+    .finally(() => popupСardСreate.btnSubmit.textContent = 'Cохранить');
 });
 popupСardСreate.setEventListeners();
 
 
 const popupEditProfile = new PopupWithForm(popupProfileEdit, (userInfo) => {
   api.updateUserInfo(userInfo)
-  .then(refreshUser => {
-    user.setUserInfo(refreshUser);
-  })
-  .catch(err => console.log(err));
-  
+    .then(refreshUser => {
+      user.setUserInfo(refreshUser);
+      popupEditProfile.close();
+    })
+    .catch(err => console.log(err))
+    .finally(() => popupEditProfile.btnSubmit.textContent = 'Cохранить');
 });
 popupEditProfile.setEventListeners();
 
 const popupAvatarUpdate = new PopupWithForm(popupUpdateAvatar, (userInfo) => {
   api.updateAvatarUser(userInfo)
-  .then(refreshUser => {
-    user.setUserInfo(refreshUser);
-  })
-  .catch(err => console.log(err));
-  
+    .then(refreshUser => {
+      user.setUserInfo(refreshUser);
+      popupAvatarUpdate.close();
+    })
+    .catch(err => console.log(err))
+    .finally(() => popupAvatarUpdate.btnSubmit.textContent = 'Cохранить');
 });
 popupAvatarUpdate.setEventListeners();
 
 const popupConfirm = new PopupConfirm(popupConfirmSelector, (cardId) => {
-  api.deleteCard(cardId)
-  .then(data => {
-    console.log(data);
-  })
+  return api.deleteCard(cardId);
 });
 popupConfirm.setEventListeners();
 
