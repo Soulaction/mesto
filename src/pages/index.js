@@ -21,7 +21,7 @@ import { Card } from '../components/Card.js'
 import { FormValidator } from '../components/FormValidator.js'
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
-import { PopupConfirm } from '../components/PopupConfirm.js';
+import { PopupWithConfirmation } from '../components/PopupWithConfirmation.js';
 import { UserInfo } from '../components/UserInfo.js';
 import { api } from '../components/Api.js';
 
@@ -36,7 +36,7 @@ const renderCard = (item) => {
     templateSelector,
     user.getUserInfo(),
     () => popupViewСardImage.open(item),
-    (id, extendForHandleConfirm) => popupConfirm.open(id, extendForHandleConfirm),
+    (id, extendForHandleConfirm) => popupWithConfirmation.open(id, extendForHandleConfirm),
     (id) => {
       if (card.isLike()) {
         return api.deleteLike(id);
@@ -110,10 +110,10 @@ const popupAvatarUpdate = new PopupWithForm(popupUpdateAvatar, (userInfo) => {
 });
 popupAvatarUpdate.setEventListeners();
 
-const popupConfirm = new PopupConfirm(popupConfirmSelector, (cardId) => {
+const popupWithConfirmation = new PopupWithConfirmation(popupConfirmSelector, (cardId) => {
   return api.deleteCard(cardId);
 });
-popupConfirm.setEventListeners();
+popupWithConfirmation.setEventListeners();
 
 editProfileButton.addEventListener('click', () => {
   popupEditProfile.setInputValues(user.getUserInfo());

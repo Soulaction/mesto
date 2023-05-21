@@ -1,6 +1,6 @@
 import { Popup } from "./Popup";
 
-export class PopupConfirm extends Popup {
+export class PopupWithConfirmation extends Popup {
     constructor(popupElement, handleConfirm) {
         super(popupElement);
         this._handleConfirm = handleConfirm;
